@@ -85,7 +85,7 @@ class WinDivert(object):
         """
         Check if the WinDivert service is currently installed on the system.
         """
-        return subprocess.call("sc query WinDivert1.3", stdout=subprocess.PIPE,
+        return subprocess.call("sc query WinDivert1.4", stdout=subprocess.PIPE,
                                stderr=subprocess.PIPE) == 0
 
     @staticmethod
@@ -95,7 +95,7 @@ class WinDivert(object):
         This function only requests a service stop, which may not be processed immediately if there are still open
         handles.
         """
-        subprocess.check_call("sc stop WinDivert1.3", stdout=subprocess.PIPE,
+        subprocess.check_call("sc stop WinDivert1.4", stdout=subprocess.PIPE,
                               stderr=subprocess.PIPE)
 
     @staticmethod
@@ -112,7 +112,7 @@ class WinDivert(object):
                 __out_opt UINT *errorPos
             );
 
-        See: https://reqrypt.org/windivert-doc.html#divert_helper_check_filter
+        See: https://reqrypt.org/windivert-doc-1.4.html#divert_helper_check_filter
 
         :return: A tuple (res, pos, msg) with check result in 'res' human readable description of the error in 'msg' and the error's position in 'pos'.
         """
@@ -138,7 +138,7 @@ class WinDivert(object):
                 __in UINT64 flags
             );
 
-        For more info on the C call visit: http://reqrypt.org/windivert-doc.html#divert_open
+        For more info on the C call visit: http://reqrypt.org/windivert-doc-1.4.html#divert_open
         """
         if self.is_open:
             raise RuntimeError("WinDivert handle is already open.")
@@ -162,7 +162,7 @@ class WinDivert(object):
                 __in HANDLE handle
             );
 
-        For more info on the C call visit: http://reqrypt.org/windivert-doc.html#divert_close
+        For more info on the C call visit: http://reqrypt.org/windivert-doc-1.4.html#divert_close
         """
         if not self.is_open:
             raise RuntimeError("WinDivert handle is not open.")
@@ -183,7 +183,7 @@ class WinDivert(object):
                 __out_opt UINT *recvLen
             );
 
-        For more info on the C call visit: http://reqrypt.org/windivert-doc.html#divert_recv
+        For more info on the C call visit: http://reqrypt.org/windivert-doc-1.4.html#divert_recv
 
         :return: The return value is a `pydivert.Packet`.
         """
@@ -197,8 +197,12 @@ class WinDivert(object):
         windivert_dll.WinDivertRecv(self._handle, packet_, bufsize, byref(address), byref(recv_len))
         return Packet(
             memoryview(packet)[:recv_len.value],
+            address.Timestamp,
             (address.IfIdx, address.SubIfIdx),
-            Direction(address.Direction)
+            Direction(address.Direction),
+            address.Loopback,
+            address.Impostor,
+            (address.PseudoIPChecksum, address.PseudoTCPChecksum, address.PseudoUDPChecksum),
         )
 
     def send(self, packet, recalculate_checksum=True):
@@ -219,7 +223,7 @@ class WinDivert(object):
                 __out_opt UINT *sendLen
             );
 
-        For more info on the C call visit: http://reqrypt.org/windivert-doc.html#divert_send
+        For more info on the C call visit: http://reqrypt.org/windivert-doc-1.4.html#divert_send
 
         :return: The return value is the number of bytes actually sent.
         """
@@ -249,7 +253,7 @@ class WinDivert(object):
                 __out UINT64 *pValue
             );
 
-        For more info on the C call visit: http://reqrypt.org/windivert-doc.html#divert_get_param
+        For more info on the C call visit: http://reqrypt.org/windivert-doc-1.4.html#divert_get_param
 
         :return: The parameter value.
         """
@@ -269,6 +273,6 @@ class WinDivert(object):
                 __in UINT64 value
             );
 
-        For more info on the C call visit: http://reqrypt.org/windivert-doc.html#divert_set_param
+        For more info on the C call visit: http://reqrypt.org/windivert-doc-1.4.html#divert_set_param
         """
         return windivert_dll.WinDivertSetParam(self._handle, name, value)

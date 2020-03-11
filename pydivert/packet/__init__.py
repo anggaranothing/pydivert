@@ -33,12 +33,16 @@ class Packet(object):
     Creation of packets is cheap, parsing is done on first attribute access.
     """
 
-    def __init__(self, raw, interface, direction):
+    def __init__(self, raw, qpctimestamp, interface, direction, loopback, impostor, checksum):
         if isinstance(raw, bytes):
             raw = memoryview(bytearray(raw))
         self.raw = raw  # type: memoryview
+        self.qpctimestamp = qpctimestamp
         self.interface = interface
         self.direction = direction
+        self.loopback = loopback
+        self.impostor = impostor
+        self.checksum = checksum
 
     def __repr__(self):
         def dump(x):
@@ -59,6 +63,14 @@ class Packet(object):
             return x
 
         return "Packet({})".format(dump(self))
+
+    @property
+    def timestamp(self):
+        """
+        - The Timestamp indicates when the packet was first captured by WinDivert.
+        - It uses the same clock as QueryPerformanceCounter().
+        """
+        return self.qpctimestamp
 
     @property
     def is_outbound(self):
@@ -82,7 +94,39 @@ class Packet(object):
         - True, if the packet is on the loopback interface.
         - False, otherwise.
         """
-        return self.interface[0] == 1
+        return self.loopback == 1
+
+    @property
+    def is_impostor(self):
+        """
+        - True, if the packet is impostor.
+        - False, otherwise.
+        """
+        return self.impostor == 1
+    
+    @property
+    def has_pseudo_ip_checksum(self):
+        """
+        - True, if the packet has pseudo IPv4 checksum.
+        - False, otherwise.
+        """
+        return self.checksum[0] == 1
+
+    @property
+    def has_pseudo_tcp_checksum(self):
+        """
+        - True, if the packet has pseudo TCP checksum.
+        - False, otherwise.
+        """
+        return self.checksum[1] == 1
+
+    @property
+    def has_pseudo_udp_checksum(self):
+        """
+        - True, if the packet has pseudo UDP checksum.
+        - False, otherwise.
+        """
+        return self.checksum[2] == 1
 
     @cached_property
     def address_family(self):
@@ -302,10 +346,13 @@ class Packet(object):
         Typically this function should be invoked on a modified packet before it is injected with WinDivert.send().
         Returns the number of checksums calculated.
 
-        See: https://reqrypt.org/windivert-doc.html#divert_helper_calc_checksums
+        This function will calculate checksums based on the Pseudo*Checksum flags in the `WINDIVERT_ADDRESS` structure.
+        This involves calculating pseudo checksums instead of full checksums if the corresponding address flag is set.
+
+        See: https://reqrypt.org/windivert-doc-1.4.html#divert_helper_calc_checksums
         """
         buff, buff_ = self.__to_buffers()
-        num = windivert_dll.WinDivertHelperCalcChecksums(ctypes.byref(buff_), len(self.raw), flags)
+        num = windivert_dll.WinDivertHelperCalcChecksums(ctypes.byref(buff_), len(self.raw), ctypes.byref(self.wd_addr()), flags)
         if PY2:
             self.raw = memoryview(buff)[:len(self.raw)]
         return num
@@ -321,8 +368,12 @@ class Packet(object):
         :return: The `WINDIVERT_ADDRESS` structure.
         """
         address = windivert_dll.WinDivertAddress()
+        address.Timestamp = self.qpctimestamp
         address.IfIdx, address.SubIfIdx = self.interface
         address.Direction = self.direction
+        address.Loopback = self.loopback
+        address.Impostor = self.impostor
+        address.PseudoIPChecksum, address.PseudoTCPChecksum, address.PseudoUDPChecksum = self.checksum
         return address
 
     def matches(self, filter, layer=Layer.NETWORK):
@@ -339,7 +390,7 @@ class Packet(object):
                 __in PWINDIVERT_ADDRESS pAddr
             );
 
-        See: https://reqrypt.org/windivert-doc.html#divert_helper_eval_filter
+        See: https://reqrypt.org/windivert-doc-1.4.html#divert_helper_eval_filter
 
         :param filter: The filter string.
         :param layer: The network layer.

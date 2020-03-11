@@ -19,7 +19,7 @@ from enum import IntEnum
 # Divert layers.
 class Layer(IntEnum):
     """
-    See https://reqrypt.org/windivert-doc.html#divert_open
+    See https://reqrypt.org/windivert-doc-1.4.html#divert_open
     """
     NETWORK = 0
     NETWORK_FORWARD = 1
@@ -28,37 +28,39 @@ class Layer(IntEnum):
 # Divert Flag.
 class Flag(IntEnum):
     """
-    See https://reqrypt.org/windivert-doc.html#divert_open
+    See https://reqrypt.org/windivert-doc-1.4.html#divert_open
     """
     DEFAULT = 0
     SNIFF = 1
     DROP = 2
+    DEBUG = 4
     NO_CHECKSUM = 1024  # Deprecated since Windivert 1.2
 
 
 # Divert parameters.
 class Param(IntEnum):
     """
-    See https://reqrypt.org/windivert-doc.html#divert_set_param
+    See https://reqrypt.org/windivert-doc-1.4.html#divert_set_param
     """
-    QUEUE_LEN = 0  # Packet queue length 1 < default 512 (actually 1024) < 8192
-    QUEUE_TIME = 1  # Packet queue time 128 < default 512 < 2048
-    QUEUE_SIZE = 2  # Packet queue size (bytes)  4096 (4KB) < default 4194304 (4MB) < 33554432 (32MB)
+    QUEUE_LEN = 0  # Packet queue length 16 < default 2048 < 16384
+    QUEUE_TIME = 1  # Packet queue time 20 < default 1000 < 8000
+    QUEUE_SIZE = 2  # Packet queue size (bytes)  65535 (64KB) < default 4194304 (4MB) < 33554432 (32MB)
 
 
 # Direction outbound/inbound
 class Direction(IntEnum):
     """
-    See https://reqrypt.org/windivert-doc.html#divert_address
+    See https://reqrypt.org/windivert-doc-1.4.html#divert_address
     """
     OUTBOUND = 0
     INBOUND = 1
+    I_HAVE_NO_IDEA_WHAT_IS_THIS = 58
 
 
 # Checksums
 class CalcChecksumsOption(IntEnum):
     """
-    See https://reqrypt.org/windivert-doc.html#divert_helper_calc_checksums
+    See https://reqrypt.org/windivert-doc-1.4.html#divert_helper_calc_checksums
     """
     NO_IP_CHECKSUM = 1
     NO_ICMP_CHECKSUM = 2
