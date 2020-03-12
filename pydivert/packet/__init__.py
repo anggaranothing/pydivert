@@ -197,7 +197,7 @@ class Packet(object):
         - None, otherwise.
         """
         if self.address_family == socket.AF_INET:
-            return IPv4Header(self, pseudo_cksum=self.has_pseudo_ip_checksum())
+            return IPv4Header(self, pseudo_cksum=self.has_pseudo_ip_checksum)
 
     @cached_property
     def ipv6(self):
@@ -252,7 +252,7 @@ class Packet(object):
         """
         ipproto, proto_start = self.protocol
         if ipproto == Protocol.TCP:
-            return TCPHeader(self, proto_start, pseudo_cksum=self.has_pseudo_tcp_checksum())
+            return TCPHeader(self, proto_start, pseudo_cksum=self.has_pseudo_tcp_checksum)
 
     @cached_property
     def udp(self):
@@ -262,7 +262,7 @@ class Packet(object):
         """
         ipproto, proto_start = self.protocol
         if ipproto == Protocol.UDP:
-            return UDPHeader(self, proto_start, pseudo_cksum=self.has_pseudo_udp_checksum())
+            return UDPHeader(self, proto_start, pseudo_cksum=self.has_pseudo_udp_checksum)
 
     @cached_property
     def _port(self):
@@ -352,7 +352,7 @@ class Packet(object):
         See: https://reqrypt.org/windivert-doc-1.4.html#divert_helper_calc_checksums
         """
         buff, buff_ = self.__to_buffers()
-        num = windivert_dll.WinDivertHelperCalcChecksums(ctypes.byref(buff_), len(self.raw), ctypes.byref(self.wd_addr()), flags)
+        num = windivert_dll.WinDivertHelperCalcChecksums(ctypes.byref(buff_), len(self.raw), ctypes.byref(self.wd_addr), flags)
         if PY2:
             self.raw = memoryview(buff)[:len(self.raw)]
         return num
