@@ -16,6 +16,7 @@
 import ctypes
 import pprint
 import socket
+import time
 
 from pydivert import windivert_dll
 from pydivert.consts import Direction, IPV6_EXT_HEADERS, Protocol, Layer
@@ -33,14 +34,14 @@ class Packet(object):
     Creation of packets is cheap, parsing is done on first attribute access.
     """
 
-    def __init__(self, raw, qpctimestamp, interface, direction, loopback, impostor, checksumflag):
+    def __init__(self, raw, interface, direction, qpctimestamp=None, loopback=None, impostor=0, checksumflag=(0,0,0,)):
         if isinstance(raw, bytes):
             raw = memoryview(bytearray(raw))
         self.raw = raw  # type: memoryview
-        self.qpctimestamp = qpctimestamp
+        self.qpctimestamp = qpctimestamp if qpctimestamp else int(round(time.time() * 1000))
         self.interface = interface
         self.direction = direction
-        self.loopback = loopback
+        self.loopback = self.interface[0] if loopback is None else loopback
         self.impostor = impostor
         self.checksumflag = checksumflag
 

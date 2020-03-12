@@ -197,9 +197,9 @@ class WinDivert(object):
         windivert_dll.WinDivertRecv(self._handle, packet_, bufsize, byref(address), byref(recv_len))
         return Packet(
             memoryview(packet)[:recv_len.value],
-            address.Timestamp,
             (address.IfIdx, address.SubIfIdx),
             Direction(address.Direction),
+            address.Timestamp,
             address.Loopback,
             address.Impostor,
             (address.PseudoIPChecksum, address.PseudoTCPChecksum, address.PseudoUDPChecksum),

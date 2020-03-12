@@ -79,8 +79,7 @@ class TestParams(object):
         Tests setting the minimum value for queue time.
         From docs: 20 < default 1000 < 8000
         """
-        def_range = (20, 1000, 8000)
-        for value in def_range:
+        for value in (20, 1000, 8000):
             w.set_param(Param.QUEUE_TIME, value)
             assert value == w.get_param(Param.QUEUE_TIME)
 
