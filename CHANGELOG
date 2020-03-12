@@ -1,3 +1,6 @@
+Version 2.2.1-anggaranothing
+    - Add default value of timestamp, impostor, and checksumflag
+
 Version 2.2.0-anggaranothing
     - Bundle WinDivert 1.4.3.
     - Add a new `pydivert.consts.Flag.DEBUG` flag that causes `pydivert.WinDivert.send()` to

@@ -208,7 +208,7 @@ Injected packets can be captured and diverted again by other WinDivert handles w
 
 <dl class="class">
 <dt id="pydivert.Packet">
-<em class="property">class </em><code class="sig-prename descclassname">pydivert.</code><code class="sig-name descname">Packet</code><span class="sig-paren">(</span><em class="sig-param">raw</em>, <em class="sig-param">qpctimestamp</em>, <em class="sig-param">interface</em>, <em class="sig-param">direction</em>, <em class="sig-param">loopback</em>, <em class="sig-param">impostor</em>, <em class="sig-param">checksumflag</em><span class="sig-paren">)</span><a class="headerlink" href="#pydivert.Packet" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">pydivert.</code><code class="sig-name descname">Packet</code><span class="sig-paren">(</span><em class="sig-param">raw</em>, <em class="sig-param">interface</em>, <em class="sig-param">direction</em>, <em class="sig-param">qpctimestamp=None</em>, <em class="sig-param">loopback=None</em>, <em class="sig-param">impostor=0</em>, <em class="sig-param">checksumflag=(0</em>, <em class="sig-param">0</em>, <em class="sig-param">0)</em><span class="sig-paren">)</span><a class="headerlink" href="#pydivert.Packet" title="Permalink to this definition">¶</a></dt>
 <dd><p>A single packet, possibly including an IP header, a TCP/UDP header and a payload.
 Creation of packets is cheap, parsing is done on first attribute access.</p>
 <dl class="method">
