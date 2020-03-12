@@ -32,7 +32,10 @@ ERROR_IO_PENDING = 997
 
 here = os.path.abspath(os.path.dirname(__file__))
 
-DLL_PATH = os.path.join(here, "WinDivert.dll")
+if platform.architecture()[0] == "64bit":
+    DLL_PATH = os.path.join(here, "WinDivert64.dll")
+else:
+    DLL_PATH = os.path.join(here, "WinDivert32.dll")
 
 
 def raise_on_error(f):
