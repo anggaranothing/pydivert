@@ -33,7 +33,7 @@ class Packet(object):
     Creation of packets is cheap, parsing is done on first attribute access.
     """
 
-    def __init__(self, raw, qpctimestamp, interface, direction, loopback, impostor, checksum):
+    def __init__(self, raw, qpctimestamp, interface, direction, loopback, impostor, checksumflag):
         if isinstance(raw, bytes):
             raw = memoryview(bytearray(raw))
         self.raw = raw  # type: memoryview
@@ -42,7 +42,7 @@ class Packet(object):
         self.direction = direction
         self.loopback = loopback
         self.impostor = impostor
-        self.checksum = checksum
+        self.checksumflag = checksumflag
 
     def __repr__(self):
         def dump(x):
@@ -110,7 +110,7 @@ class Packet(object):
         - True, if the packet has pseudo IPv4 checksum.
         - False, otherwise.
         """
-        return self.checksum[0] == 1
+        return self.checksumflag[0] == 1
 
     @property
     def has_pseudo_tcp_checksum(self):
@@ -118,7 +118,7 @@ class Packet(object):
         - True, if the packet has pseudo TCP checksum.
         - False, otherwise.
         """
-        return self.checksum[1] == 1
+        return self.checksumflag[1] == 1
 
     @property
     def has_pseudo_udp_checksum(self):
@@ -126,7 +126,7 @@ class Packet(object):
         - True, if the packet has pseudo UDP checksum.
         - False, otherwise.
         """
-        return self.checksum[2] == 1
+        return self.checksumflag[2] == 1
 
     @cached_property
     def address_family(self):
@@ -373,7 +373,7 @@ class Packet(object):
         address.Direction = self.direction
         address.Loopback = self.loopback
         address.Impostor = self.impostor
-        address.PseudoIPChecksum, address.PseudoTCPChecksum, address.PseudoUDPChecksum = self.checksum
+        address.PseudoIPChecksum, address.PseudoTCPChecksum, address.PseudoUDPChecksum = self.checksumflag
         return address
 
     def matches(self, filter, layer=Layer.NETWORK):
