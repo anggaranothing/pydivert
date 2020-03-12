@@ -1,3 +1,26 @@
+Version 2.2.0-anggaranothing
+    - Bundle WinDivert 1.4.3.
+    - Add a new `pydivert.consts.Flag.DEBUG` flag that causes `pydivert.WinDivert.send()` to
+      block until the packet exits the Windows TCP/IP stack.  This is slower
+      but provides better error messages, so is useful for debugging.
+    - `pydivert.windivert_dll.structs.WinDivertAddress` now includes a Timestamp field
+      that indicates when the packet was first captured by WinDivert.
+      The timestamp uses the same clock as QueryPerformanceCounter().
+    - `pydivert.windivert_dll.structs.WinDivertAddress` now includes a Loopback field
+      that indicates whether the packet is a loopback packet or not.
+    - `pydivert.windivert_dll.structs.WinDivertAddress` now includes an Impostor field
+      which indicates that the packet originated from another driver
+      rather than from the network or TCP/IP stack.
+    - `pydivert.windivert_dll.structs.WinDivertAddress` now
+      includes three new flags relating to checksums:
+      * PseudoIPChecksum
+      * PseudoTCPChecksum
+      * PseudoUDPChecksum
+      When set, these flags indicate that the corresponding packet uses
+      "pseudo" IP/TCP/UDP checksums instead of the default full checksums.
+      Pseudo checksums are cheaper to calculate, and can be used
+      when the network hardware supports checksum offloading.
+
 Version 2.1.0
     - Bundle WinDivert 1.3.
 

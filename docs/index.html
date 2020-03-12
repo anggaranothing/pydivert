@@ -1,29 +1,17 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
+    <meta charset="utf-8" />
     <title>PyDivert API Reference &#8212; PyDivert  documentation</title>
-    
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
    
@@ -32,55 +20,56 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body role="document">
+  </head><body>
   
 
     <div class="document">
       <div class="documentwrapper">
+          
+
           <div class="body" role="main">
             
   <div class="section" id="pydivert-api-reference">
 <h1>PyDivert API Reference<a class="headerlink" href="#pydivert-api-reference" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="pydivert.WinDivert">
-<em class="property">class </em><code class="descclassname">pydivert.</code><code class="descname">WinDivert</code><span class="sig-paren">(</span><em>filter='true'</em>, <em>layer=&lt;Layer.NETWORK: 0&gt;</em>, <em>priority=0</em>, <em>flags=&lt;Flag.DEFAULT: 0&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#pydivert.WinDivert" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">pydivert.</code><code class="sig-name descname">WinDivert</code><span class="sig-paren">(</span><em class="sig-param">filter='true'</em>, <em class="sig-param">layer=&lt;Layer.NETWORK: 0&gt;</em>, <em class="sig-param">priority=0</em>, <em class="sig-param">flags=&lt;Flag.DEFAULT: 0&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#pydivert.WinDivert" title="Permalink to this definition">¶</a></dt>
 <dd><p>A WinDivert handle that can be used to capture packets.
 The main methods are <cite>.open()</cite>, <cite>.recv()</cite>, <cite>.send()</cite> and <cite>.close()</cite>.</p>
 <p>Use it like so:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">pydivert</span><span class="o">.</span><span class="n">WinDivert</span><span class="p">()</span> <span class="k">as</span> <span class="n">w</span><span class="p">:</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">pydivert</span><span class="o">.</span><span class="n">WinDivert</span><span class="p">()</span> <span class="k">as</span> <span class="n">w</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">packet</span> <span class="ow">in</span> <span class="n">w</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">packet</span><span class="p">)</span>
         <span class="n">w</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">packet</span><span class="p">)</span>
 </pre></div>
 </div>
-<dl class="staticmethod">
+<dl class="method">
 <dt id="pydivert.WinDivert.register">
-<em class="property">static </em><code class="descname">register</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydivert.WinDivert.register" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">register</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydivert.WinDivert.register" title="Permalink to this definition">¶</a></dt>
 <dd><p>An utility method to register the service the first time.
 It is usually not required to call this function, as WinDivert will register itself when opening a handle.</p>
 </dd></dl>
 
-<dl class="staticmethod">
+<dl class="method">
 <dt id="pydivert.WinDivert.is_registered">
-<em class="property">static </em><code class="descname">is_registered</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydivert.WinDivert.is_registered" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">is_registered</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydivert.WinDivert.is_registered" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if the WinDivert service is currently installed on the system.</p>
 </dd></dl>
 
-<dl class="staticmethod">
+<dl class="method">
 <dt id="pydivert.WinDivert.unregister">
-<em class="property">static </em><code class="descname">unregister</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydivert.WinDivert.unregister" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">unregister</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydivert.WinDivert.unregister" title="Permalink to this definition">¶</a></dt>
 <dd><p>Unregisters the WinDivert service.
 This function only requests a service stop, which may not be processed immediately if there are still open
 handles.</p>
 </dd></dl>
 
-<dl class="staticmethod">
+<dl class="method">
 <dt id="pydivert.WinDivert.check_filter">
-<em class="property">static </em><code class="descname">check_filter</code><span class="sig-paren">(</span><em>filter</em>, <em>layer=&lt;Layer.NETWORK: 0&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#pydivert.WinDivert.check_filter" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="sig-name descname">check_filter</code><span class="sig-paren">(</span><em class="sig-param">filter</em>, <em class="sig-param">layer=&lt;Layer.NETWORK: 0&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#pydivert.WinDivert.check_filter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks if the given packet filter string is valid with respect to the filter language.</p>
 <p>The remapped function is WinDivertHelperCheckFilter:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">BOOL</span> <span class="n">WinDivertHelperCheckFilter</span><span class="p">(</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BOOL</span> <span class="n">WinDivertHelperCheckFilter</span><span class="p">(</span>
     <span class="n">__in</span> <span class="n">const</span> <span class="n">char</span> <span class="o">*</span><span class="nb">filter</span><span class="p">,</span>
     <span class="n">__in</span> <span class="n">WINDIVERT_LAYER</span> <span class="n">layer</span><span class="p">,</span>
     <span class="n">__out_opt</span> <span class="n">const</span> <span class="n">char</span> <span class="o">**</span><span class="n">errorStr</span><span class="p">,</span>
@@ -88,25 +77,22 @@ handles.</p>
 <span class="p">);</span>
 </pre></div>
 </div>
-<p>See: <a class="reference external" href="https://reqrypt.org/windivert-doc.html#divert_helper_check_filter">https://reqrypt.org/windivert-doc.html#divert_helper_check_filter</a></p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A tuple (res, pos, msg) with check result in &#8216;res&#8217; human readable description of the error in &#8216;msg&#8217; and the error&#8217;s position in &#8216;pos&#8217;.</td>
-</tr>
-</tbody>
-</table>
+<p>See: <a class="reference external" href="https://reqrypt.org/windivert-doc-1.4.html#divert_helper_check_filter">https://reqrypt.org/windivert-doc-1.4.html#divert_helper_check_filter</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A tuple (res, pos, msg) with check result in ‘res’ human readable description of the error in ‘msg’ and the error’s position in ‘pos’.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="pydivert.WinDivert.open">
-<code class="descname">open</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydivert.WinDivert.open" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">open</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydivert.WinDivert.open" title="Permalink to this definition">¶</a></dt>
 <dd><p>Opens a WinDivert handle for the given filter.
 Unless otherwise specified by flags, any packet that matches the filter will be diverted to the handle.
 Diverted packets can be read by the application with receive().</p>
 <p>The remapped function is WinDivertOpen:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">HANDLE</span> <span class="n">WinDivertOpen</span><span class="p">(</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HANDLE</span> <span class="n">WinDivertOpen</span><span class="p">(</span>
     <span class="n">__in</span> <span class="n">const</span> <span class="n">char</span> <span class="o">*</span><span class="nb">filter</span><span class="p">,</span>
     <span class="n">__in</span> <span class="n">WINDIVERT_LAYER</span> <span class="n">layer</span><span class="p">,</span>
     <span class="n">__in</span> <span class="n">INT16</span> <span class="n">priority</span><span class="p">,</span>
@@ -114,34 +100,34 @@ Diverted packets can be read by the application with receive().</p>
 <span class="p">);</span>
 </pre></div>
 </div>
-<p>For more info on the C call visit: <a class="reference external" href="http://reqrypt.org/windivert-doc.html#divert_open">http://reqrypt.org/windivert-doc.html#divert_open</a></p>
+<p>For more info on the C call visit: <a class="reference external" href="http://reqrypt.org/windivert-doc-1.4.html#divert_open">http://reqrypt.org/windivert-doc-1.4.html#divert_open</a></p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.WinDivert.is_open">
-<code class="descname">is_open</code><a class="headerlink" href="#pydivert.WinDivert.is_open" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">is_open</code><a class="headerlink" href="#pydivert.WinDivert.is_open" title="Permalink to this definition">¶</a></dt>
 <dd><p>Indicates if there is currently an open handle.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="pydivert.WinDivert.close">
-<code class="descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydivert.WinDivert.close" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pydivert.WinDivert.close" title="Permalink to this definition">¶</a></dt>
 <dd><p>Closes the handle opened by open().</p>
 <p>The remapped function is WinDivertClose:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">BOOL</span> <span class="n">WinDivertClose</span><span class="p">(</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BOOL</span> <span class="n">WinDivertClose</span><span class="p">(</span>
     <span class="n">__in</span> <span class="n">HANDLE</span> <span class="n">handle</span>
 <span class="p">);</span>
 </pre></div>
 </div>
-<p>For more info on the C call visit: <a class="reference external" href="http://reqrypt.org/windivert-doc.html#divert_close">http://reqrypt.org/windivert-doc.html#divert_close</a></p>
+<p>For more info on the C call visit: <a class="reference external" href="http://reqrypt.org/windivert-doc-1.4.html#divert_close">http://reqrypt.org/windivert-doc-1.4.html#divert_close</a></p>
 </dd></dl>
 
 <dl class="method">
 <dt id="pydivert.WinDivert.recv">
-<code class="descname">recv</code><span class="sig-paren">(</span><em>bufsize=1500</em><span class="sig-paren">)</span><a class="headerlink" href="#pydivert.WinDivert.recv" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">recv</code><span class="sig-paren">(</span><em class="sig-param">bufsize=1500</em><span class="sig-paren">)</span><a class="headerlink" href="#pydivert.WinDivert.recv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Receives a diverted packet that matched the filter.</p>
 <p>The remapped function is WinDivertRecv:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">BOOL</span> <span class="n">WinDivertRecv</span><span class="p">(</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BOOL</span> <span class="n">WinDivertRecv</span><span class="p">(</span>
     <span class="n">__in</span> <span class="n">HANDLE</span> <span class="n">handle</span><span class="p">,</span>
     <span class="n">__out</span> <span class="n">PVOID</span> <span class="n">pPacket</span><span class="p">,</span>
     <span class="n">__in</span> <span class="n">UINT</span> <span class="n">packetLen</span><span class="p">,</span>
@@ -150,26 +136,23 @@ Diverted packets can be read by the application with receive().</p>
 <span class="p">);</span>
 </pre></div>
 </div>
-<p>For more info on the C call visit: <a class="reference external" href="http://reqrypt.org/windivert-doc.html#divert_recv">http://reqrypt.org/windivert-doc.html#divert_recv</a></p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The return value is a <cite>pydivert.Packet</cite>.</td>
-</tr>
-</tbody>
-</table>
+<p>For more info on the C call visit: <a class="reference external" href="http://reqrypt.org/windivert-doc-1.4.html#divert_recv">http://reqrypt.org/windivert-doc-1.4.html#divert_recv</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The return value is a <cite>pydivert.Packet</cite>.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="pydivert.WinDivert.send">
-<code class="descname">send</code><span class="sig-paren">(</span><em>packet</em>, <em>recalculate_checksum=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pydivert.WinDivert.send" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">send</code><span class="sig-paren">(</span><em class="sig-param">packet</em>, <em class="sig-param">recalculate_checksum=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pydivert.WinDivert.send" title="Permalink to this definition">¶</a></dt>
 <dd><p>Injects a packet into the network stack.
 Recalculates the checksum before sending unless recalculate_checksum=False is passed.</p>
 <p>The injected packet may be one received from recv(), or a modified version, or a completely new packet.
 Injected packets can be captured and diverted again by other WinDivert handles with lower priorities.</p>
 <p>The remapped function is WinDivertSend:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">BOOL</span> <span class="n">WinDivertSend</span><span class="p">(</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BOOL</span> <span class="n">WinDivertSend</span><span class="p">(</span>
     <span class="n">__in</span> <span class="n">HANDLE</span> <span class="n">handle</span><span class="p">,</span>
     <span class="n">__in</span> <span class="n">PVOID</span> <span class="n">pPacket</span><span class="p">,</span>
     <span class="n">__in</span> <span class="n">UINT</span> <span class="n">packetLen</span><span class="p">,</span>
@@ -178,94 +161,132 @@ Injected packets can be captured and diverted again by other WinDivert handles w
 <span class="p">);</span>
 </pre></div>
 </div>
-<p>For more info on the C call visit: <a class="reference external" href="http://reqrypt.org/windivert-doc.html#divert_send">http://reqrypt.org/windivert-doc.html#divert_send</a></p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The return value is the number of bytes actually sent.</td>
-</tr>
-</tbody>
-</table>
+<p>For more info on the C call visit: <a class="reference external" href="http://reqrypt.org/windivert-doc-1.4.html#divert_send">http://reqrypt.org/windivert-doc-1.4.html#divert_send</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The return value is the number of bytes actually sent.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="pydivert.WinDivert.get_param">
-<code class="descname">get_param</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#pydivert.WinDivert.get_param" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_param</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><a class="headerlink" href="#pydivert.WinDivert.get_param" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a WinDivert parameter. See pydivert.Param for the list of parameters.</p>
 <p>The remapped function is WinDivertGetParam:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">BOOL</span> <span class="n">WinDivertGetParam</span><span class="p">(</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BOOL</span> <span class="n">WinDivertGetParam</span><span class="p">(</span>
     <span class="n">__in</span> <span class="n">HANDLE</span> <span class="n">handle</span><span class="p">,</span>
     <span class="n">__in</span> <span class="n">WINDIVERT_PARAM</span> <span class="n">param</span><span class="p">,</span>
     <span class="n">__out</span> <span class="n">UINT64</span> <span class="o">*</span><span class="n">pValue</span>
 <span class="p">);</span>
 </pre></div>
 </div>
-<p>For more info on the C call visit: <a class="reference external" href="http://reqrypt.org/windivert-doc.html#divert_get_param">http://reqrypt.org/windivert-doc.html#divert_get_param</a></p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The parameter value.</td>
-</tr>
-</tbody>
-</table>
+<p>For more info on the C call visit: <a class="reference external" href="http://reqrypt.org/windivert-doc-1.4.html#divert_get_param">http://reqrypt.org/windivert-doc-1.4.html#divert_get_param</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The parameter value.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="pydivert.WinDivert.set_param">
-<code class="descname">set_param</code><span class="sig-paren">(</span><em>name</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#pydivert.WinDivert.set_param" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_param</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#pydivert.WinDivert.set_param" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set a WinDivert parameter. See pydivert.Param for the list of parameters.</p>
 <p>The remapped function is DivertSetParam:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">BOOL</span> <span class="n">WinDivertSetParam</span><span class="p">(</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BOOL</span> <span class="n">WinDivertSetParam</span><span class="p">(</span>
     <span class="n">__in</span> <span class="n">HANDLE</span> <span class="n">handle</span><span class="p">,</span>
     <span class="n">__in</span> <span class="n">WINDIVERT_PARAM</span> <span class="n">param</span><span class="p">,</span>
     <span class="n">__in</span> <span class="n">UINT64</span> <span class="n">value</span>
 <span class="p">);</span>
 </pre></div>
 </div>
-<p>For more info on the C call visit: <a class="reference external" href="http://reqrypt.org/windivert-doc.html#divert_set_param">http://reqrypt.org/windivert-doc.html#divert_set_param</a></p>
+<p>For more info on the C call visit: <a class="reference external" href="http://reqrypt.org/windivert-doc-1.4.html#divert_set_param">http://reqrypt.org/windivert-doc-1.4.html#divert_set_param</a></p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="pydivert.Packet">
-<em class="property">class </em><code class="descclassname">pydivert.</code><code class="descname">Packet</code><span class="sig-paren">(</span><em>raw</em>, <em>interface</em>, <em>direction</em><span class="sig-paren">)</span><a class="headerlink" href="#pydivert.Packet" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">pydivert.</code><code class="sig-name descname">Packet</code><span class="sig-paren">(</span><em class="sig-param">raw</em>, <em class="sig-param">qpctimestamp</em>, <em class="sig-param">interface</em>, <em class="sig-param">direction</em>, <em class="sig-param">loopback</em>, <em class="sig-param">impostor</em>, <em class="sig-param">checksumflag</em><span class="sig-paren">)</span><a class="headerlink" href="#pydivert.Packet" title="Permalink to this definition">¶</a></dt>
 <dd><p>A single packet, possibly including an IP header, a TCP/UDP header and a payload.
 Creation of packets is cheap, parsing is done on first attribute access.</p>
-<dl class="attribute">
-<dt id="pydivert.Packet.is_outbound">
-<code class="descname">is_outbound</code><a class="headerlink" href="#pydivert.Packet.is_outbound" title="Permalink to this definition">¶</a></dt>
-<dd><p>Indicates if the packet is outbound.
-Convenience method for <code class="docutils literal"><span class="pre">.direction</span></code>.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pydivert.Packet.is_inbound">
-<code class="descname">is_inbound</code><a class="headerlink" href="#pydivert.Packet.is_inbound" title="Permalink to this definition">¶</a></dt>
-<dd><p>Indicates if the packet is inbound.
-Convenience method for <code class="docutils literal"><span class="pre">.direction</span></code>.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pydivert.Packet.is_loopback">
-<code class="descname">is_loopback</code><a class="headerlink" href="#pydivert.Packet.is_loopback" title="Permalink to this definition">¶</a></dt>
+<dl class="method">
+<dt id="pydivert.Packet.timestamp">
+<em class="property">property </em><code class="sig-name descname">timestamp</code><a class="headerlink" href="#pydivert.Packet.timestamp" title="Permalink to this definition">¶</a></dt>
 <dd><ul class="simple">
-<li>True, if the packet is on the loopback interface.</li>
-<li>False, otherwise.</li>
+<li><p>The Timestamp indicates when the packet was first captured by WinDivert.</p></li>
+<li><p>It uses the same clock as QueryPerformanceCounter().</p></li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydivert.Packet.is_outbound">
+<em class="property">property </em><code class="sig-name descname">is_outbound</code><a class="headerlink" href="#pydivert.Packet.is_outbound" title="Permalink to this definition">¶</a></dt>
+<dd><p>Indicates if the packet is outbound.
+Convenience method for <code class="docutils literal notranslate"><span class="pre">.direction</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydivert.Packet.is_inbound">
+<em class="property">property </em><code class="sig-name descname">is_inbound</code><a class="headerlink" href="#pydivert.Packet.is_inbound" title="Permalink to this definition">¶</a></dt>
+<dd><p>Indicates if the packet is inbound.
+Convenience method for <code class="docutils literal notranslate"><span class="pre">.direction</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydivert.Packet.is_loopback">
+<em class="property">property </em><code class="sig-name descname">is_loopback</code><a class="headerlink" href="#pydivert.Packet.is_loopback" title="Permalink to this definition">¶</a></dt>
+<dd><ul class="simple">
+<li><p>True, if the packet is on the loopback interface.</p></li>
+<li><p>False, otherwise.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydivert.Packet.is_impostor">
+<em class="property">property </em><code class="sig-name descname">is_impostor</code><a class="headerlink" href="#pydivert.Packet.is_impostor" title="Permalink to this definition">¶</a></dt>
+<dd><ul class="simple">
+<li><p>True, if the packet is impostor.</p></li>
+<li><p>False, otherwise.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydivert.Packet.has_pseudo_ip_checksum">
+<em class="property">property </em><code class="sig-name descname">has_pseudo_ip_checksum</code><a class="headerlink" href="#pydivert.Packet.has_pseudo_ip_checksum" title="Permalink to this definition">¶</a></dt>
+<dd><ul class="simple">
+<li><p>True, if the packet has pseudo IPv4 checksum.</p></li>
+<li><p>False, otherwise.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydivert.Packet.has_pseudo_tcp_checksum">
+<em class="property">property </em><code class="sig-name descname">has_pseudo_tcp_checksum</code><a class="headerlink" href="#pydivert.Packet.has_pseudo_tcp_checksum" title="Permalink to this definition">¶</a></dt>
+<dd><ul class="simple">
+<li><p>True, if the packet has pseudo TCP checksum.</p></li>
+<li><p>False, otherwise.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="pydivert.Packet.has_pseudo_udp_checksum">
+<em class="property">property </em><code class="sig-name descname">has_pseudo_udp_checksum</code><a class="headerlink" href="#pydivert.Packet.has_pseudo_udp_checksum" title="Permalink to this definition">¶</a></dt>
+<dd><ul class="simple">
+<li><p>True, if the packet has pseudo UDP checksum.</p></li>
+<li><p>False, otherwise.</p></li>
 </ul>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="pydivert.Packet.address_family">
-<code class="descname">address_family</code><a class="headerlink" href="#pydivert.Packet.address_family" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
-<dt>The packet address family:</dt>
-<dd><ul class="first last simple">
-<li>socket.AF_INET, if IPv4</li>
-<li>socket.AF_INET6, if IPv6</li>
-<li>None, otherwise.</li>
+<code class="sig-name descname">address_family</code><a class="headerlink" href="#pydivert.Packet.address_family" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>The packet address family:</dt><dd><ul class="simple">
+<li><p>socket.AF_INET, if IPv4</p></li>
+<li><p>socket.AF_INET6, if IPv6</p></li>
+<li><p>None, otherwise.</p></li>
 </ul>
 </dd>
 </dl>
@@ -273,12 +294,12 @@ Convenience method for <code class="docutils literal"><span class="pre">.directi
 
 <dl class="attribute">
 <dt id="pydivert.Packet.protocol">
-<code class="descname">protocol</code><a class="headerlink" href="#pydivert.Packet.protocol" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">protocol</code><a class="headerlink" href="#pydivert.Packet.protocol" title="Permalink to this definition">¶</a></dt>
 <dd><ul>
-<li><div class="first line-block">
+<li><div class="line-block">
 <div class="line">A (ipproto, proto_start) tuple.</div>
-<div class="line"><code class="docutils literal"><span class="pre">ipproto</span></code> is the IP protocol in use, e.g. Protocol.TCP or Protocol.UDP.</div>
-<div class="line"><code class="docutils literal"><span class="pre">proto_start</span></code> denotes the beginning of the protocol data.</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">ipproto</span></code> is the IP protocol in use, e.g. Protocol.TCP or Protocol.UDP.</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">proto_start</span></code> denotes the beginning of the protocol data.</div>
 <div class="line">If the packet does not match our expectations, both ipproto and proto_start are None.</div>
 </div>
 </li>
@@ -287,144 +308,146 @@ Convenience method for <code class="docutils literal"><span class="pre">.directi
 
 <dl class="attribute">
 <dt id="pydivert.Packet.ipv4">
-<code class="descname">ipv4</code><a class="headerlink" href="#pydivert.Packet.ipv4" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">ipv4</code><a class="headerlink" href="#pydivert.Packet.ipv4" title="Permalink to this definition">¶</a></dt>
 <dd><ul class="simple">
-<li>An IPv4Header instance, if the packet is valid IPv4.</li>
-<li>None, otherwise.</li>
+<li><p>An IPv4Header instance, if the packet is valid IPv4.</p></li>
+<li><p>None, otherwise.</p></li>
 </ul>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="pydivert.Packet.ipv6">
-<code class="descname">ipv6</code><a class="headerlink" href="#pydivert.Packet.ipv6" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">ipv6</code><a class="headerlink" href="#pydivert.Packet.ipv6" title="Permalink to this definition">¶</a></dt>
 <dd><ul class="simple">
-<li>An IPv6Header instance, if the packet is valid IPv6.</li>
-<li>None, otherwise.</li>
+<li><p>An IPv6Header instance, if the packet is valid IPv6.</p></li>
+<li><p>None, otherwise.</p></li>
 </ul>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="pydivert.Packet.ip">
-<code class="descname">ip</code><a class="headerlink" href="#pydivert.Packet.ip" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">ip</code><a class="headerlink" href="#pydivert.Packet.ip" title="Permalink to this definition">¶</a></dt>
 <dd><ul class="simple">
-<li>An IPHeader instance, if the packet is valid IPv4 or IPv6.</li>
-<li>None, otherwise.</li>
+<li><p>An IPHeader instance, if the packet is valid IPv4 or IPv6.</p></li>
+<li><p>None, otherwise.</p></li>
 </ul>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="pydivert.Packet.icmpv4">
-<code class="descname">icmpv4</code><a class="headerlink" href="#pydivert.Packet.icmpv4" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">icmpv4</code><a class="headerlink" href="#pydivert.Packet.icmpv4" title="Permalink to this definition">¶</a></dt>
 <dd><ul class="simple">
-<li>An ICMPv4Header instance, if the packet is valid ICMPv4.</li>
-<li>None, otherwise.</li>
+<li><p>An ICMPv4Header instance, if the packet is valid ICMPv4.</p></li>
+<li><p>None, otherwise.</p></li>
 </ul>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="pydivert.Packet.icmpv6">
-<code class="descname">icmpv6</code><a class="headerlink" href="#pydivert.Packet.icmpv6" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">icmpv6</code><a class="headerlink" href="#pydivert.Packet.icmpv6" title="Permalink to this definition">¶</a></dt>
 <dd><ul class="simple">
-<li>An ICMPv6Header instance, if the packet is valid ICMPv6.</li>
-<li>None, otherwise.</li>
+<li><p>An ICMPv6Header instance, if the packet is valid ICMPv6.</p></li>
+<li><p>None, otherwise.</p></li>
 </ul>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="pydivert.Packet.icmp">
-<code class="descname">icmp</code><a class="headerlink" href="#pydivert.Packet.icmp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">icmp</code><a class="headerlink" href="#pydivert.Packet.icmp" title="Permalink to this definition">¶</a></dt>
 <dd><ul class="simple">
-<li>An ICMPHeader instance, if the packet is valid ICMPv4 or ICMPv6.</li>
-<li>None, otherwise.</li>
+<li><p>An ICMPHeader instance, if the packet is valid ICMPv4 or ICMPv6.</p></li>
+<li><p>None, otherwise.</p></li>
 </ul>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="pydivert.Packet.tcp">
-<code class="descname">tcp</code><a class="headerlink" href="#pydivert.Packet.tcp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">tcp</code><a class="headerlink" href="#pydivert.Packet.tcp" title="Permalink to this definition">¶</a></dt>
 <dd><ul class="simple">
-<li>An TCPHeader instance, if the packet is valid TCP.</li>
-<li>None, otherwise.</li>
+<li><p>An TCPHeader instance, if the packet is valid TCP.</p></li>
+<li><p>None, otherwise.</p></li>
 </ul>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="pydivert.Packet.udp">
-<code class="descname">udp</code><a class="headerlink" href="#pydivert.Packet.udp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">udp</code><a class="headerlink" href="#pydivert.Packet.udp" title="Permalink to this definition">¶</a></dt>
 <dd><ul class="simple">
-<li>An TCPHeader instance, if the packet is valid UDP.</li>
-<li>None, otherwise.</li>
+<li><p>An UDPHeader instance, if the packet is valid UDP.</p></li>
+<li><p>None, otherwise.</p></li>
 </ul>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.Packet.src_addr">
-<code class="descname">src_addr</code><a class="headerlink" href="#pydivert.Packet.src_addr" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">src_addr</code><a class="headerlink" href="#pydivert.Packet.src_addr" title="Permalink to this definition">¶</a></dt>
 <dd><ul class="simple">
-<li>The source address, if the packet is valid IPv4 or IPv6.</li>
-<li>None, otherwise.</li>
+<li><p>The source address, if the packet is valid IPv4 or IPv6.</p></li>
+<li><p>None, otherwise.</p></li>
 </ul>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.Packet.dst_addr">
-<code class="descname">dst_addr</code><a class="headerlink" href="#pydivert.Packet.dst_addr" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">dst_addr</code><a class="headerlink" href="#pydivert.Packet.dst_addr" title="Permalink to this definition">¶</a></dt>
 <dd><ul class="simple">
-<li>The destination address, if the packet is valid IPv4 or IPv6.</li>
-<li>None, otherwise.</li>
+<li><p>The destination address, if the packet is valid IPv4 or IPv6.</p></li>
+<li><p>None, otherwise.</p></li>
 </ul>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.Packet.src_port">
-<code class="descname">src_port</code><a class="headerlink" href="#pydivert.Packet.src_port" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">src_port</code><a class="headerlink" href="#pydivert.Packet.src_port" title="Permalink to this definition">¶</a></dt>
 <dd><ul class="simple">
-<li>The source port, if the packet is valid TCP or UDP.</li>
-<li>None, otherwise.</li>
+<li><p>The source port, if the packet is valid TCP or UDP.</p></li>
+<li><p>None, otherwise.</p></li>
 </ul>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.Packet.dst_port">
-<code class="descname">dst_port</code><a class="headerlink" href="#pydivert.Packet.dst_port" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">dst_port</code><a class="headerlink" href="#pydivert.Packet.dst_port" title="Permalink to this definition">¶</a></dt>
 <dd><ul class="simple">
-<li>The destination port, if the packet is valid TCP or UDP.</li>
-<li>None, otherwise.</li>
+<li><p>The destination port, if the packet is valid TCP or UDP.</p></li>
+<li><p>None, otherwise.</p></li>
 </ul>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.Packet.payload">
-<code class="descname">payload</code><a class="headerlink" href="#pydivert.Packet.payload" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">payload</code><a class="headerlink" href="#pydivert.Packet.payload" title="Permalink to this definition">¶</a></dt>
 <dd><ul class="simple">
-<li>The payload, if the packet is valid TCP, UDP, ICMP or ICMPv6.</li>
-<li>None, otherwise.</li>
+<li><p>The payload, if the packet is valid TCP, UDP, ICMP or ICMPv6.</p></li>
+<li><p>None, otherwise.</p></li>
 </ul>
 </dd></dl>
 
 <dl class="method">
 <dt id="pydivert.Packet.recalculate_checksums">
-<code class="descname">recalculate_checksums</code><span class="sig-paren">(</span><em>flags=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydivert.Packet.recalculate_checksums" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">recalculate_checksums</code><span class="sig-paren">(</span><em class="sig-param">flags=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydivert.Packet.recalculate_checksums" title="Permalink to this definition">¶</a></dt>
 <dd><p>(Re)calculates the checksum for any IPv4/ICMP/ICMPv6/TCP/UDP checksum present in the given packet.
 Individual checksum calculations may be disabled via the appropriate flag.
 Typically this function should be invoked on a modified packet before it is injected with WinDivert.send().
 Returns the number of checksums calculated.</p>
-<p>See: <a class="reference external" href="https://reqrypt.org/windivert-doc.html#divert_helper_calc_checksums">https://reqrypt.org/windivert-doc.html#divert_helper_calc_checksums</a></p>
+<p>This function will calculate checksums based on the Pseudo*Checksum flags in the <cite>WINDIVERT_ADDRESS</cite> structure.
+This involves calculating pseudo checksums instead of full checksums if the corresponding address flag is set.</p>
+<p>See: <a class="reference external" href="https://reqrypt.org/windivert-doc-1.4.html#divert_helper_calc_checksums">https://reqrypt.org/windivert-doc-1.4.html#divert_helper_calc_checksums</a></p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.Packet.wd_addr">
-<code class="descname">wd_addr</code><a class="headerlink" href="#pydivert.Packet.wd_addr" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">wd_addr</code><a class="headerlink" href="#pydivert.Packet.wd_addr" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the interface and direction as a <cite>WINDIVERT_ADDRESS</cite> structure.
 :return: The <cite>WINDIVERT_ADDRESS</cite> structure.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="pydivert.Packet.matches">
-<code class="descname">matches</code><span class="sig-paren">(</span><em>filter</em>, <em>layer=&lt;Layer.NETWORK: 0&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#pydivert.Packet.matches" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">matches</code><span class="sig-paren">(</span><em class="sig-param">filter</em>, <em class="sig-param">layer=&lt;Layer.NETWORK: 0&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#pydivert.Packet.matches" title="Permalink to this definition">¶</a></dt>
 <dd><p>Evaluates the packet against the given packet filter string.</p>
 <p>The remapped function is:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">BOOL</span> <span class="n">WinDivertHelperEvalFilter</span><span class="p">(</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BOOL</span> <span class="n">WinDivertHelperEvalFilter</span><span class="p">(</span>
     <span class="n">__in</span> <span class="n">const</span> <span class="n">char</span> <span class="o">*</span><span class="nb">filter</span><span class="p">,</span>
     <span class="n">__in</span> <span class="n">WINDIVERT_LAYER</span> <span class="n">layer</span><span class="p">,</span>
     <span class="n">__in</span> <span class="n">PVOID</span> <span class="n">pPacket</span><span class="p">,</span>
@@ -433,158 +456,154 @@ Returns the number of checksums calculated.</p>
 <span class="p">);</span>
 </pre></div>
 </div>
-<p>See: <a class="reference external" href="https://reqrypt.org/windivert-doc.html#divert_helper_eval_filter">https://reqrypt.org/windivert-doc.html#divert_helper_eval_filter</a></p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>filter</strong> &#8211; The filter string.</li>
-<li><strong>layer</strong> &#8211; The network layer.</li>
+<p>See: <a class="reference external" href="https://reqrypt.org/windivert-doc-1.4.html#divert_helper_eval_filter">https://reqrypt.org/windivert-doc-1.4.html#divert_helper_eval_filter</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filter</strong> – The filter string.</p></li>
+<li><p><strong>layer</strong> – The network layer.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">True if the packet matches, and False otherwise.</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if the packet matches, and False otherwise.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="pydivert.packet.TCPHeader">
-<em class="property">class </em><code class="descclassname">pydivert.packet.</code><code class="descname">TCPHeader</code><span class="sig-paren">(</span><em>packet</em>, <em>start=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydivert.packet.TCPHeader" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="attribute">
+<em class="property">class </em><code class="sig-prename descclassname">pydivert.packet.</code><code class="sig-name descname">TCPHeader</code><span class="sig-paren">(</span><em class="sig-param">packet</em>, <em class="sig-param">start=0</em>, <em class="sig-param">pseudo_cksum=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydivert.packet.TCPHeader" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
 <dt id="pydivert.packet.TCPHeader.ns">
-<code class="descname">ns</code><a class="headerlink" href="#pydivert.packet.TCPHeader.ns" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">ns</code><a class="headerlink" href="#pydivert.packet.TCPHeader.ns" title="Permalink to this definition">¶</a></dt>
 <dd><p>Indicates if the NS flag is set.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.TCPHeader.cwr">
-<code class="descname">cwr</code><a class="headerlink" href="#pydivert.packet.TCPHeader.cwr" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">cwr</code><a class="headerlink" href="#pydivert.packet.TCPHeader.cwr" title="Permalink to this definition">¶</a></dt>
 <dd><p>Indicates if the CWR flag is set.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.TCPHeader.ece">
-<code class="descname">ece</code><a class="headerlink" href="#pydivert.packet.TCPHeader.ece" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">ece</code><a class="headerlink" href="#pydivert.packet.TCPHeader.ece" title="Permalink to this definition">¶</a></dt>
 <dd><p>Indicates if the ECE flag is set.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.TCPHeader.urg">
-<code class="descname">urg</code><a class="headerlink" href="#pydivert.packet.TCPHeader.urg" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">urg</code><a class="headerlink" href="#pydivert.packet.TCPHeader.urg" title="Permalink to this definition">¶</a></dt>
 <dd><p>Indicates if the SYN flag is set.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.TCPHeader.ack">
-<code class="descname">ack</code><a class="headerlink" href="#pydivert.packet.TCPHeader.ack" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">ack</code><a class="headerlink" href="#pydivert.packet.TCPHeader.ack" title="Permalink to this definition">¶</a></dt>
 <dd><p>Indicates if the ACK flag is set.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.TCPHeader.psh">
-<code class="descname">psh</code><a class="headerlink" href="#pydivert.packet.TCPHeader.psh" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">psh</code><a class="headerlink" href="#pydivert.packet.TCPHeader.psh" title="Permalink to this definition">¶</a></dt>
 <dd><p>Indicates if the PSH flag is set.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.TCPHeader.rst">
-<code class="descname">rst</code><a class="headerlink" href="#pydivert.packet.TCPHeader.rst" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">rst</code><a class="headerlink" href="#pydivert.packet.TCPHeader.rst" title="Permalink to this definition">¶</a></dt>
 <dd><p>Indicates if the RST flag is set.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.TCPHeader.syn">
-<code class="descname">syn</code><a class="headerlink" href="#pydivert.packet.TCPHeader.syn" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">syn</code><a class="headerlink" href="#pydivert.packet.TCPHeader.syn" title="Permalink to this definition">¶</a></dt>
 <dd><p>Indicates if the SYN flag is set.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.TCPHeader.fin">
-<code class="descname">fin</code><a class="headerlink" href="#pydivert.packet.TCPHeader.fin" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">fin</code><a class="headerlink" href="#pydivert.packet.TCPHeader.fin" title="Permalink to this definition">¶</a></dt>
 <dd><p>Indicates if the FIN flag is set.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.TCPHeader.header_len">
-<code class="descname">header_len</code><a class="headerlink" href="#pydivert.packet.TCPHeader.header_len" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">header_len</code><a class="headerlink" href="#pydivert.packet.TCPHeader.header_len" title="Permalink to this definition">¶</a></dt>
 <dd><p>The TCP header length.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.TCPHeader.seq_num">
-<code class="descname">seq_num</code><a class="headerlink" href="#pydivert.packet.TCPHeader.seq_num" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">seq_num</code><a class="headerlink" href="#pydivert.packet.TCPHeader.seq_num" title="Permalink to this definition">¶</a></dt>
 <dd><p>The sequence number field.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.TCPHeader.ack_num">
-<code class="descname">ack_num</code><a class="headerlink" href="#pydivert.packet.TCPHeader.ack_num" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">ack_num</code><a class="headerlink" href="#pydivert.packet.TCPHeader.ack_num" title="Permalink to this definition">¶</a></dt>
 <dd><p>The acknowledgement number field.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.TCPHeader.window_size">
-<code class="descname">window_size</code><a class="headerlink" href="#pydivert.packet.TCPHeader.window_size" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">window_size</code><a class="headerlink" href="#pydivert.packet.TCPHeader.window_size" title="Permalink to this definition">¶</a></dt>
 <dd><p>The size of the receive window in bytes.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.TCPHeader.cksum">
-<code class="descname">cksum</code><a class="headerlink" href="#pydivert.packet.TCPHeader.cksum" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">cksum</code><a class="headerlink" href="#pydivert.packet.TCPHeader.cksum" title="Permalink to this definition">¶</a></dt>
 <dd><p>The TCP header checksum field.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.TCPHeader.urg_ptr">
-<code class="descname">urg_ptr</code><a class="headerlink" href="#pydivert.packet.TCPHeader.urg_ptr" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">urg_ptr</code><a class="headerlink" href="#pydivert.packet.TCPHeader.urg_ptr" title="Permalink to this definition">¶</a></dt>
 <dd><p>The Urgent Pointer field.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.TCPHeader.data_offset">
-<code class="descname">data_offset</code><a class="headerlink" href="#pydivert.packet.TCPHeader.data_offset" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">data_offset</code><a class="headerlink" href="#pydivert.packet.TCPHeader.data_offset" title="Permalink to this definition">¶</a></dt>
 <dd><p>The size of TCP header in 32bit words.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.TCPHeader.dst_port">
-<code class="descname">dst_port</code><a class="headerlink" href="#pydivert.packet.TCPHeader.dst_port" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">dst_port</code><a class="headerlink" href="#pydivert.packet.TCPHeader.dst_port" title="Permalink to this definition">¶</a></dt>
 <dd><p>The destination port.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.TCPHeader.payload">
-<code class="descname">payload</code><a class="headerlink" href="#pydivert.packet.TCPHeader.payload" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">payload</code><a class="headerlink" href="#pydivert.packet.TCPHeader.payload" title="Permalink to this definition">¶</a></dt>
 <dd><p>The packet payload data.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.TCPHeader.raw">
-<code class="descname">raw</code><a class="headerlink" href="#pydivert.packet.TCPHeader.raw" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">raw</code><a class="headerlink" href="#pydivert.packet.TCPHeader.raw" title="Permalink to this definition">¶</a></dt>
 <dd><p>The raw header, possibly including payload.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.TCPHeader.reserved">
-<code class="descname">reserved</code><a class="headerlink" href="#pydivert.packet.TCPHeader.reserved" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">reserved</code><a class="headerlink" href="#pydivert.packet.TCPHeader.reserved" title="Permalink to this definition">¶</a></dt>
 <dd><p>The reserved field.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.TCPHeader.src_port">
-<code class="descname">src_port</code><a class="headerlink" href="#pydivert.packet.TCPHeader.src_port" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">src_port</code><a class="headerlink" href="#pydivert.packet.TCPHeader.src_port" title="Permalink to this definition">¶</a></dt>
 <dd><p>The source port.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.TCPHeader.control_bits">
-<code class="descname">control_bits</code><a class="headerlink" href="#pydivert.packet.TCPHeader.control_bits" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">control_bits</code><a class="headerlink" href="#pydivert.packet.TCPHeader.control_bits" title="Permalink to this definition">¶</a></dt>
 <dd><p>The Control Bits field.</p>
 </dd></dl>
 
@@ -592,34 +611,34 @@ Returns the number of checksums calculated.</p>
 
 <dl class="class">
 <dt id="pydivert.packet.UDPHeader">
-<em class="property">class </em><code class="descclassname">pydivert.packet.</code><code class="descname">UDPHeader</code><span class="sig-paren">(</span><em>packet</em>, <em>start=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydivert.packet.UDPHeader" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="attribute">
+<em class="property">class </em><code class="sig-prename descclassname">pydivert.packet.</code><code class="sig-name descname">UDPHeader</code><span class="sig-paren">(</span><em class="sig-param">packet</em>, <em class="sig-param">start=0</em>, <em class="sig-param">pseudo_cksum=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydivert.packet.UDPHeader" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
 <dt id="pydivert.packet.UDPHeader.payload">
-<code class="descname">payload</code><a class="headerlink" href="#pydivert.packet.UDPHeader.payload" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">payload</code><a class="headerlink" href="#pydivert.packet.UDPHeader.payload" title="Permalink to this definition">¶</a></dt>
 <dd><p>The packet payload data.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.UDPHeader.dst_port">
-<code class="descname">dst_port</code><a class="headerlink" href="#pydivert.packet.UDPHeader.dst_port" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">dst_port</code><a class="headerlink" href="#pydivert.packet.UDPHeader.dst_port" title="Permalink to this definition">¶</a></dt>
 <dd><p>The destination port.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.UDPHeader.raw">
-<code class="descname">raw</code><a class="headerlink" href="#pydivert.packet.UDPHeader.raw" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">raw</code><a class="headerlink" href="#pydivert.packet.UDPHeader.raw" title="Permalink to this definition">¶</a></dt>
 <dd><p>The raw header, possibly including payload.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.UDPHeader.src_port">
-<code class="descname">src_port</code><a class="headerlink" href="#pydivert.packet.UDPHeader.src_port" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">src_port</code><a class="headerlink" href="#pydivert.packet.UDPHeader.src_port" title="Permalink to this definition">¶</a></dt>
 <dd><p>The source port.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.UDPHeader.cksum">
-<code class="descname">cksum</code><a class="headerlink" href="#pydivert.packet.UDPHeader.cksum" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">cksum</code><a class="headerlink" href="#pydivert.packet.UDPHeader.cksum" title="Permalink to this definition">¶</a></dt>
 <dd><p>The UDP header checksum field.</p>
 </dd></dl>
 
@@ -627,124 +646,124 @@ Returns the number of checksums calculated.</p>
 
 <dl class="class">
 <dt id="pydivert.packet.IPv4Header">
-<em class="property">class </em><code class="descclassname">pydivert.packet.</code><code class="descname">IPv4Header</code><span class="sig-paren">(</span><em>packet</em>, <em>start=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydivert.packet.IPv4Header" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="attribute">
+<em class="property">class </em><code class="sig-prename descclassname">pydivert.packet.</code><code class="sig-name descname">IPv4Header</code><span class="sig-paren">(</span><em class="sig-param">packet</em>, <em class="sig-param">start=0</em>, <em class="sig-param">pseudo_cksum=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydivert.packet.IPv4Header" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
 <dt id="pydivert.packet.IPv4Header.header_len">
-<code class="descname">header_len</code><a class="headerlink" href="#pydivert.packet.IPv4Header.header_len" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">header_len</code><a class="headerlink" href="#pydivert.packet.IPv4Header.header_len" title="Permalink to this definition">¶</a></dt>
 <dd><p>The IP header length in bytes.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.IPv4Header.hdr_len">
-<code class="descname">hdr_len</code><a class="headerlink" href="#pydivert.packet.IPv4Header.hdr_len" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">hdr_len</code><a class="headerlink" href="#pydivert.packet.IPv4Header.hdr_len" title="Permalink to this definition">¶</a></dt>
 <dd><p>The header length in words of 32bit.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.IPv4Header.packet_len">
-<code class="descname">packet_len</code><a class="headerlink" href="#pydivert.packet.IPv4Header.packet_len" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">packet_len</code><a class="headerlink" href="#pydivert.packet.IPv4Header.packet_len" title="Permalink to this definition">¶</a></dt>
 <dd><p>The total packet length, including <em>all</em> headers, as reported by the IP header.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.IPv4Header.tos">
-<code class="descname">tos</code><a class="headerlink" href="#pydivert.packet.IPv4Header.tos" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">tos</code><a class="headerlink" href="#pydivert.packet.IPv4Header.tos" title="Permalink to this definition">¶</a></dt>
 <dd><p>The Type Of Service field (six-bit DiffServ field and a two-bit ECN field).</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.IPv4Header.ident">
-<code class="descname">ident</code><a class="headerlink" href="#pydivert.packet.IPv4Header.ident" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">ident</code><a class="headerlink" href="#pydivert.packet.IPv4Header.ident" title="Permalink to this definition">¶</a></dt>
 <dd><p>The Identification field.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.IPv4Header.reserved">
-<code class="descname">reserved</code><a class="headerlink" href="#pydivert.packet.IPv4Header.reserved" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">reserved</code><a class="headerlink" href="#pydivert.packet.IPv4Header.reserved" title="Permalink to this definition">¶</a></dt>
 <dd><p>Indicates if the RESERVED flag is set.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.IPv4Header.evil">
-<code class="descname">evil</code><a class="headerlink" href="#pydivert.packet.IPv4Header.evil" title="Permalink to this definition">¶</a></dt>
-<dd><p>Just an april&#8217;s fool joke for the RESERVED flag.</p>
+<em class="property">property </em><code class="sig-name descname">evil</code><a class="headerlink" href="#pydivert.packet.IPv4Header.evil" title="Permalink to this definition">¶</a></dt>
+<dd><p>Just an april’s fool joke for the RESERVED flag.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.IPv4Header.df">
-<code class="descname">df</code><a class="headerlink" href="#pydivert.packet.IPv4Header.df" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">df</code><a class="headerlink" href="#pydivert.packet.IPv4Header.df" title="Permalink to this definition">¶</a></dt>
 <dd><p>Indicates if the DF flag is set.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.IPv4Header.mf">
-<code class="descname">mf</code><a class="headerlink" href="#pydivert.packet.IPv4Header.mf" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">mf</code><a class="headerlink" href="#pydivert.packet.IPv4Header.mf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Indicates if the MF flag is set.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.IPv4Header.ttl">
-<code class="descname">ttl</code><a class="headerlink" href="#pydivert.packet.IPv4Header.ttl" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">ttl</code><a class="headerlink" href="#pydivert.packet.IPv4Header.ttl" title="Permalink to this definition">¶</a></dt>
 <dd><p>The Time To Live field.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.IPv4Header.protocol">
-<code class="descname">protocol</code><a class="headerlink" href="#pydivert.packet.IPv4Header.protocol" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">protocol</code><a class="headerlink" href="#pydivert.packet.IPv4Header.protocol" title="Permalink to this definition">¶</a></dt>
 <dd><p>The Protocol field.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.IPv4Header.cksum">
-<code class="descname">cksum</code><a class="headerlink" href="#pydivert.packet.IPv4Header.cksum" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">cksum</code><a class="headerlink" href="#pydivert.packet.IPv4Header.cksum" title="Permalink to this definition">¶</a></dt>
 <dd><p>The IP header Checksum field.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.IPv4Header.flags">
-<code class="descname">flags</code><a class="headerlink" href="#pydivert.packet.IPv4Header.flags" title="Permalink to this definition">¶</a></dt>
-<dd><p>The flags field: RESERVED (the evil bit), DF (don&#8217;t fragment), MF (more fragments).</p>
+<em class="property">property </em><code class="sig-name descname">flags</code><a class="headerlink" href="#pydivert.packet.IPv4Header.flags" title="Permalink to this definition">¶</a></dt>
+<dd><p>The flags field: RESERVED (the evil bit), DF (don’t fragment), MF (more fragments).</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.IPv4Header.frag_offset">
-<code class="descname">frag_offset</code><a class="headerlink" href="#pydivert.packet.IPv4Header.frag_offset" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">frag_offset</code><a class="headerlink" href="#pydivert.packet.IPv4Header.frag_offset" title="Permalink to this definition">¶</a></dt>
 <dd><p>The Fragment Offset field in blocks of 8 bytes.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.IPv4Header.dscp">
-<code class="descname">dscp</code><a class="headerlink" href="#pydivert.packet.IPv4Header.dscp" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">dscp</code><a class="headerlink" href="#pydivert.packet.IPv4Header.dscp" title="Permalink to this definition">¶</a></dt>
 <dd><p>The Differentiated Services Code Point field (originally defined as Type of Service) also known as DiffServ.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.IPv4Header.diff_serv">
-<code class="descname">diff_serv</code><a class="headerlink" href="#pydivert.packet.IPv4Header.diff_serv" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">diff_serv</code><a class="headerlink" href="#pydivert.packet.IPv4Header.diff_serv" title="Permalink to this definition">¶</a></dt>
 <dd><p>The Differentiated Services Code Point field (originally defined as Type of Service) also known as DiffServ.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.IPv4Header.ecn">
-<code class="descname">ecn</code><a class="headerlink" href="#pydivert.packet.IPv4Header.ecn" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">ecn</code><a class="headerlink" href="#pydivert.packet.IPv4Header.ecn" title="Permalink to this definition">¶</a></dt>
 <dd><p>The Explicit Congestion Notification field.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.IPv4Header.dst_addr">
-<code class="descname">dst_addr</code><a class="headerlink" href="#pydivert.packet.IPv4Header.dst_addr" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">dst_addr</code><a class="headerlink" href="#pydivert.packet.IPv4Header.dst_addr" title="Permalink to this definition">¶</a></dt>
 <dd><p>The packet destination address.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.IPv4Header.raw">
-<code class="descname">raw</code><a class="headerlink" href="#pydivert.packet.IPv4Header.raw" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">raw</code><a class="headerlink" href="#pydivert.packet.IPv4Header.raw" title="Permalink to this definition">¶</a></dt>
 <dd><p>The raw header, possibly including payload.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.IPv4Header.src_addr">
-<code class="descname">src_addr</code><a class="headerlink" href="#pydivert.packet.IPv4Header.src_addr" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">src_addr</code><a class="headerlink" href="#pydivert.packet.IPv4Header.src_addr" title="Permalink to this definition">¶</a></dt>
 <dd><p>The packet source address.</p>
 </dd></dl>
 
@@ -752,70 +771,70 @@ Returns the number of checksums calculated.</p>
 
 <dl class="class">
 <dt id="pydivert.packet.IPv6Header">
-<em class="property">class </em><code class="descclassname">pydivert.packet.</code><code class="descname">IPv6Header</code><span class="sig-paren">(</span><em>packet</em>, <em>start=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydivert.packet.IPv6Header" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="attribute">
+<em class="property">class </em><code class="sig-prename descclassname">pydivert.packet.</code><code class="sig-name descname">IPv6Header</code><span class="sig-paren">(</span><em class="sig-param">packet</em>, <em class="sig-param">start=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydivert.packet.IPv6Header" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
 <dt id="pydivert.packet.IPv6Header.dst_addr">
-<code class="descname">dst_addr</code><a class="headerlink" href="#pydivert.packet.IPv6Header.dst_addr" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">dst_addr</code><a class="headerlink" href="#pydivert.packet.IPv6Header.dst_addr" title="Permalink to this definition">¶</a></dt>
 <dd><p>The packet destination address.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.IPv6Header.payload_len">
-<code class="descname">payload_len</code><a class="headerlink" href="#pydivert.packet.IPv6Header.payload_len" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">payload_len</code><a class="headerlink" href="#pydivert.packet.IPv6Header.payload_len" title="Permalink to this definition">¶</a></dt>
 <dd><p>The Payload Length field.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.IPv6Header.raw">
-<code class="descname">raw</code><a class="headerlink" href="#pydivert.packet.IPv6Header.raw" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">raw</code><a class="headerlink" href="#pydivert.packet.IPv6Header.raw" title="Permalink to this definition">¶</a></dt>
 <dd><p>The raw header, possibly including payload.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.IPv6Header.src_addr">
-<code class="descname">src_addr</code><a class="headerlink" href="#pydivert.packet.IPv6Header.src_addr" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">src_addr</code><a class="headerlink" href="#pydivert.packet.IPv6Header.src_addr" title="Permalink to this definition">¶</a></dt>
 <dd><p>The packet source address.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.IPv6Header.next_hdr">
-<code class="descname">next_hdr</code><a class="headerlink" href="#pydivert.packet.IPv6Header.next_hdr" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">next_hdr</code><a class="headerlink" href="#pydivert.packet.IPv6Header.next_hdr" title="Permalink to this definition">¶</a></dt>
 <dd><p>The Next Header field. Replaces the Protocol field in IPv4.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.IPv6Header.hop_limit">
-<code class="descname">hop_limit</code><a class="headerlink" href="#pydivert.packet.IPv6Header.hop_limit" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">hop_limit</code><a class="headerlink" href="#pydivert.packet.IPv6Header.hop_limit" title="Permalink to this definition">¶</a></dt>
 <dd><p>The Hop Limit field. Replaces the TTL field in IPv4.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.IPv6Header.packet_len">
-<code class="descname">packet_len</code><a class="headerlink" href="#pydivert.packet.IPv6Header.packet_len" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">packet_len</code><a class="headerlink" href="#pydivert.packet.IPv6Header.packet_len" title="Permalink to this definition">¶</a></dt>
 <dd><p>The total packet length, including <em>all</em> headers, as reported by the IP header.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.IPv6Header.traffic_class">
-<code class="descname">traffic_class</code><a class="headerlink" href="#pydivert.packet.IPv6Header.traffic_class" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">traffic_class</code><a class="headerlink" href="#pydivert.packet.IPv6Header.traffic_class" title="Permalink to this definition">¶</a></dt>
 <dd><p>The Traffic Class field (six-bit DiffServ field and a two-bit ECN field).</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.IPv6Header.flow_label">
-<code class="descname">flow_label</code><a class="headerlink" href="#pydivert.packet.IPv6Header.flow_label" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">flow_label</code><a class="headerlink" href="#pydivert.packet.IPv6Header.flow_label" title="Permalink to this definition">¶</a></dt>
 <dd><p>The Flow Label field.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.IPv6Header.diff_serv">
-<code class="descname">diff_serv</code><a class="headerlink" href="#pydivert.packet.IPv6Header.diff_serv" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">diff_serv</code><a class="headerlink" href="#pydivert.packet.IPv6Header.diff_serv" title="Permalink to this definition">¶</a></dt>
 <dd><p>The DiffServ field.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.IPv6Header.ecn">
-<code class="descname">ecn</code><a class="headerlink" href="#pydivert.packet.IPv6Header.ecn" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">ecn</code><a class="headerlink" href="#pydivert.packet.IPv6Header.ecn" title="Permalink to this definition">¶</a></dt>
 <dd><p>The Explicit Congestion Notification field.</p>
 </dd></dl>
 
@@ -823,34 +842,34 @@ Returns the number of checksums calculated.</p>
 
 <dl class="class">
 <dt id="pydivert.packet.ICMPv4Header">
-<em class="property">class </em><code class="descclassname">pydivert.packet.</code><code class="descname">ICMPv4Header</code><span class="sig-paren">(</span><em>packet</em>, <em>start=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydivert.packet.ICMPv4Header" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="attribute">
+<em class="property">class </em><code class="sig-prename descclassname">pydivert.packet.</code><code class="sig-name descname">ICMPv4Header</code><span class="sig-paren">(</span><em class="sig-param">packet</em>, <em class="sig-param">start=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydivert.packet.ICMPv4Header" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
 <dt id="pydivert.packet.ICMPv4Header.cksum">
-<code class="descname">cksum</code><a class="headerlink" href="#pydivert.packet.ICMPv4Header.cksum" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">cksum</code><a class="headerlink" href="#pydivert.packet.ICMPv4Header.cksum" title="Permalink to this definition">¶</a></dt>
 <dd><p>The ICMP header checksum field.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.ICMPv4Header.code">
-<code class="descname">code</code><a class="headerlink" href="#pydivert.packet.ICMPv4Header.code" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">code</code><a class="headerlink" href="#pydivert.packet.ICMPv4Header.code" title="Permalink to this definition">¶</a></dt>
 <dd><p>The ICMP message code.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.ICMPv4Header.payload">
-<code class="descname">payload</code><a class="headerlink" href="#pydivert.packet.ICMPv4Header.payload" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">payload</code><a class="headerlink" href="#pydivert.packet.ICMPv4Header.payload" title="Permalink to this definition">¶</a></dt>
 <dd><p>The packet payload data.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.ICMPv4Header.raw">
-<code class="descname">raw</code><a class="headerlink" href="#pydivert.packet.ICMPv4Header.raw" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">raw</code><a class="headerlink" href="#pydivert.packet.ICMPv4Header.raw" title="Permalink to this definition">¶</a></dt>
 <dd><p>The raw header, possibly including payload.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.ICMPv4Header.type">
-<code class="descname">type</code><a class="headerlink" href="#pydivert.packet.ICMPv4Header.type" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">type</code><a class="headerlink" href="#pydivert.packet.ICMPv4Header.type" title="Permalink to this definition">¶</a></dt>
 <dd><p>The ICMP message type.</p>
 </dd></dl>
 
@@ -858,34 +877,34 @@ Returns the number of checksums calculated.</p>
 
 <dl class="class">
 <dt id="pydivert.packet.ICMPv6Header">
-<em class="property">class </em><code class="descclassname">pydivert.packet.</code><code class="descname">ICMPv6Header</code><span class="sig-paren">(</span><em>packet</em>, <em>start=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydivert.packet.ICMPv6Header" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="attribute">
+<em class="property">class </em><code class="sig-prename descclassname">pydivert.packet.</code><code class="sig-name descname">ICMPv6Header</code><span class="sig-paren">(</span><em class="sig-param">packet</em>, <em class="sig-param">start=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pydivert.packet.ICMPv6Header" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
 <dt id="pydivert.packet.ICMPv6Header.cksum">
-<code class="descname">cksum</code><a class="headerlink" href="#pydivert.packet.ICMPv6Header.cksum" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">cksum</code><a class="headerlink" href="#pydivert.packet.ICMPv6Header.cksum" title="Permalink to this definition">¶</a></dt>
 <dd><p>The ICMP header checksum field.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.ICMPv6Header.code">
-<code class="descname">code</code><a class="headerlink" href="#pydivert.packet.ICMPv6Header.code" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">code</code><a class="headerlink" href="#pydivert.packet.ICMPv6Header.code" title="Permalink to this definition">¶</a></dt>
 <dd><p>The ICMP message code.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.ICMPv6Header.payload">
-<code class="descname">payload</code><a class="headerlink" href="#pydivert.packet.ICMPv6Header.payload" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">payload</code><a class="headerlink" href="#pydivert.packet.ICMPv6Header.payload" title="Permalink to this definition">¶</a></dt>
 <dd><p>The packet payload data.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.ICMPv6Header.raw">
-<code class="descname">raw</code><a class="headerlink" href="#pydivert.packet.ICMPv6Header.raw" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">raw</code><a class="headerlink" href="#pydivert.packet.ICMPv6Header.raw" title="Permalink to this definition">¶</a></dt>
 <dd><p>The raw header, possibly including payload.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pydivert.packet.ICMPv6Header.type">
-<code class="descname">type</code><a class="headerlink" href="#pydivert.packet.ICMPv6Header.type" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">type</code><a class="headerlink" href="#pydivert.packet.ICMPv6Header.type" title="Permalink to this definition">¶</a></dt>
 <dd><p>The ICMP message type.</p>
 </dd></dl>
 
@@ -893,172 +912,182 @@ Returns the number of checksums calculated.</p>
 
 <dl class="class">
 <dt id="pydivert.Layer">
-<em class="property">class </em><code class="descclassname">pydivert.</code><code class="descname">Layer</code><a class="headerlink" href="#pydivert.Layer" title="Permalink to this definition">¶</a></dt>
-<dd><p>See <a class="reference external" href="https://reqrypt.org/windivert-doc.html#divert_open">https://reqrypt.org/windivert-doc.html#divert_open</a></p>
+<em class="property">class </em><code class="sig-prename descclassname">pydivert.</code><code class="sig-name descname">Layer</code><a class="headerlink" href="#pydivert.Layer" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference external" href="https://reqrypt.org/windivert-doc-1.4.html#divert_open">https://reqrypt.org/windivert-doc-1.4.html#divert_open</a></p>
 <dl class="attribute">
 <dt id="pydivert.Layer.NETWORK">
-<code class="descname">NETWORK</code><em class="property"> = 0</em><a class="headerlink" href="#pydivert.Layer.NETWORK" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">NETWORK</code><em class="property"> = 0</em><a class="headerlink" href="#pydivert.Layer.NETWORK" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="pydivert.Layer.NETWORK_FORWARD">
-<code class="descname">NETWORK_FORWARD</code><em class="property"> = 1</em><a class="headerlink" href="#pydivert.Layer.NETWORK_FORWARD" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">NETWORK_FORWARD</code><em class="property"> = 1</em><a class="headerlink" href="#pydivert.Layer.NETWORK_FORWARD" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="pydivert.Flag">
-<em class="property">class </em><code class="descclassname">pydivert.</code><code class="descname">Flag</code><a class="headerlink" href="#pydivert.Flag" title="Permalink to this definition">¶</a></dt>
-<dd><p>See <a class="reference external" href="https://reqrypt.org/windivert-doc.html#divert_open">https://reqrypt.org/windivert-doc.html#divert_open</a></p>
+<em class="property">class </em><code class="sig-prename descclassname">pydivert.</code><code class="sig-name descname">Flag</code><a class="headerlink" href="#pydivert.Flag" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference external" href="https://reqrypt.org/windivert-doc-1.4.html#divert_open">https://reqrypt.org/windivert-doc-1.4.html#divert_open</a></p>
 <dl class="attribute">
 <dt id="pydivert.Flag.DEFAULT">
-<code class="descname">DEFAULT</code><em class="property"> = 0</em><a class="headerlink" href="#pydivert.Flag.DEFAULT" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">DEFAULT</code><em class="property"> = 0</em><a class="headerlink" href="#pydivert.Flag.DEFAULT" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="pydivert.Flag.SNIFF">
-<code class="descname">SNIFF</code><em class="property"> = 1</em><a class="headerlink" href="#pydivert.Flag.SNIFF" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">SNIFF</code><em class="property"> = 1</em><a class="headerlink" href="#pydivert.Flag.SNIFF" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="pydivert.Flag.DROP">
-<code class="descname">DROP</code><em class="property"> = 2</em><a class="headerlink" href="#pydivert.Flag.DROP" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">DROP</code><em class="property"> = 2</em><a class="headerlink" href="#pydivert.Flag.DROP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pydivert.Flag.DEBUG">
+<code class="sig-name descname">DEBUG</code><em class="property"> = 4</em><a class="headerlink" href="#pydivert.Flag.DEBUG" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="pydivert.Flag.NO_CHECKSUM">
-<code class="descname">NO_CHECKSUM</code><em class="property"> = 1024</em><a class="headerlink" href="#pydivert.Flag.NO_CHECKSUM" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">NO_CHECKSUM</code><em class="property"> = 1024</em><a class="headerlink" href="#pydivert.Flag.NO_CHECKSUM" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="pydivert.Param">
-<em class="property">class </em><code class="descclassname">pydivert.</code><code class="descname">Param</code><a class="headerlink" href="#pydivert.Param" title="Permalink to this definition">¶</a></dt>
-<dd><p>See <a class="reference external" href="https://reqrypt.org/windivert-doc.html#divert_set_param">https://reqrypt.org/windivert-doc.html#divert_set_param</a></p>
+<em class="property">class </em><code class="sig-prename descclassname">pydivert.</code><code class="sig-name descname">Param</code><a class="headerlink" href="#pydivert.Param" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference external" href="https://reqrypt.org/windivert-doc-1.4.html#divert_set_param">https://reqrypt.org/windivert-doc-1.4.html#divert_set_param</a></p>
 <dl class="attribute">
 <dt id="pydivert.Param.QUEUE_LEN">
-<code class="descname">QUEUE_LEN</code><em class="property"> = 0</em><a class="headerlink" href="#pydivert.Param.QUEUE_LEN" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">QUEUE_LEN</code><em class="property"> = 0</em><a class="headerlink" href="#pydivert.Param.QUEUE_LEN" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="pydivert.Param.QUEUE_TIME">
-<code class="descname">QUEUE_TIME</code><em class="property"> = 1</em><a class="headerlink" href="#pydivert.Param.QUEUE_TIME" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">QUEUE_TIME</code><em class="property"> = 1</em><a class="headerlink" href="#pydivert.Param.QUEUE_TIME" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="pydivert.Param.QUEUE_SIZE">
-<code class="descname">QUEUE_SIZE</code><em class="property"> = 2</em><a class="headerlink" href="#pydivert.Param.QUEUE_SIZE" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">QUEUE_SIZE</code><em class="property"> = 2</em><a class="headerlink" href="#pydivert.Param.QUEUE_SIZE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="pydivert.CalcChecksumsOption">
-<em class="property">class </em><code class="descclassname">pydivert.</code><code class="descname">CalcChecksumsOption</code><a class="headerlink" href="#pydivert.CalcChecksumsOption" title="Permalink to this definition">¶</a></dt>
-<dd><p>See <a class="reference external" href="https://reqrypt.org/windivert-doc.html#divert_helper_calc_checksums">https://reqrypt.org/windivert-doc.html#divert_helper_calc_checksums</a></p>
+<em class="property">class </em><code class="sig-prename descclassname">pydivert.</code><code class="sig-name descname">CalcChecksumsOption</code><a class="headerlink" href="#pydivert.CalcChecksumsOption" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference external" href="https://reqrypt.org/windivert-doc-1.4.html#divert_helper_calc_checksums">https://reqrypt.org/windivert-doc-1.4.html#divert_helper_calc_checksums</a></p>
 <dl class="attribute">
 <dt id="pydivert.CalcChecksumsOption.NO_IP_CHECKSUM">
-<code class="descname">NO_IP_CHECKSUM</code><em class="property"> = 1</em><a class="headerlink" href="#pydivert.CalcChecksumsOption.NO_IP_CHECKSUM" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">NO_IP_CHECKSUM</code><em class="property"> = 1</em><a class="headerlink" href="#pydivert.CalcChecksumsOption.NO_IP_CHECKSUM" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="pydivert.CalcChecksumsOption.NO_ICMP_CHECKSUM">
-<code class="descname">NO_ICMP_CHECKSUM</code><em class="property"> = 2</em><a class="headerlink" href="#pydivert.CalcChecksumsOption.NO_ICMP_CHECKSUM" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">NO_ICMP_CHECKSUM</code><em class="property"> = 2</em><a class="headerlink" href="#pydivert.CalcChecksumsOption.NO_ICMP_CHECKSUM" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="pydivert.CalcChecksumsOption.NO_ICMPV6_CHECKSUM">
-<code class="descname">NO_ICMPV6_CHECKSUM</code><em class="property"> = 4</em><a class="headerlink" href="#pydivert.CalcChecksumsOption.NO_ICMPV6_CHECKSUM" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">NO_ICMPV6_CHECKSUM</code><em class="property"> = 4</em><a class="headerlink" href="#pydivert.CalcChecksumsOption.NO_ICMPV6_CHECKSUM" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="pydivert.CalcChecksumsOption.NO_TCP_CHECKSUM">
-<code class="descname">NO_TCP_CHECKSUM</code><em class="property"> = 8</em><a class="headerlink" href="#pydivert.CalcChecksumsOption.NO_TCP_CHECKSUM" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">NO_TCP_CHECKSUM</code><em class="property"> = 8</em><a class="headerlink" href="#pydivert.CalcChecksumsOption.NO_TCP_CHECKSUM" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="pydivert.CalcChecksumsOption.NO_UDP_CHECKSUM">
-<code class="descname">NO_UDP_CHECKSUM</code><em class="property"> = 16</em><a class="headerlink" href="#pydivert.CalcChecksumsOption.NO_UDP_CHECKSUM" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">NO_UDP_CHECKSUM</code><em class="property"> = 16</em><a class="headerlink" href="#pydivert.CalcChecksumsOption.NO_UDP_CHECKSUM" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="pydivert.CalcChecksumsOption.NO_REPLACE">
-<code class="descname">NO_REPLACE</code><em class="property"> = 2048</em><a class="headerlink" href="#pydivert.CalcChecksumsOption.NO_REPLACE" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">NO_REPLACE</code><em class="property"> = 2048</em><a class="headerlink" href="#pydivert.CalcChecksumsOption.NO_REPLACE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="pydivert.Direction">
-<em class="property">class </em><code class="descclassname">pydivert.</code><code class="descname">Direction</code><a class="headerlink" href="#pydivert.Direction" title="Permalink to this definition">¶</a></dt>
-<dd><p>See <a class="reference external" href="https://reqrypt.org/windivert-doc.html#divert_address">https://reqrypt.org/windivert-doc.html#divert_address</a></p>
+<em class="property">class </em><code class="sig-prename descclassname">pydivert.</code><code class="sig-name descname">Direction</code><a class="headerlink" href="#pydivert.Direction" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference external" href="https://reqrypt.org/windivert-doc-1.4.html#divert_address">https://reqrypt.org/windivert-doc-1.4.html#divert_address</a></p>
 <dl class="attribute">
 <dt id="pydivert.Direction.OUTBOUND">
-<code class="descname">OUTBOUND</code><em class="property"> = 0</em><a class="headerlink" href="#pydivert.Direction.OUTBOUND" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">OUTBOUND</code><em class="property"> = 0</em><a class="headerlink" href="#pydivert.Direction.OUTBOUND" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="pydivert.Direction.INBOUND">
-<code class="descname">INBOUND</code><em class="property"> = 1</em><a class="headerlink" href="#pydivert.Direction.INBOUND" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">INBOUND</code><em class="property"> = 1</em><a class="headerlink" href="#pydivert.Direction.INBOUND" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pydivert.Direction.I_HAVE_NO_IDEA_WHAT_IS_THIS">
+<code class="sig-name descname">I_HAVE_NO_IDEA_WHAT_IS_THIS</code><em class="property"> = 58</em><a class="headerlink" href="#pydivert.Direction.I_HAVE_NO_IDEA_WHAT_IS_THIS" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="pydivert.Protocol">
-<em class="property">class </em><code class="descclassname">pydivert.</code><code class="descname">Protocol</code><a class="headerlink" href="#pydivert.Protocol" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">pydivert.</code><code class="sig-name descname">Protocol</code><a class="headerlink" href="#pydivert.Protocol" title="Permalink to this definition">¶</a></dt>
 <dd><p>Transport protocol values define the layout of the header that will immediately follow the IPv4 or IPv6 header.
 See <a class="reference external" href="http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml">http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml</a></p>
 <dl class="attribute">
 <dt id="pydivert.Protocol.HOPOPT">
-<code class="descname">HOPOPT</code><em class="property"> = 0</em><a class="headerlink" href="#pydivert.Protocol.HOPOPT" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">HOPOPT</code><em class="property"> = 0</em><a class="headerlink" href="#pydivert.Protocol.HOPOPT" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="pydivert.Protocol.ICMP">
-<code class="descname">ICMP</code><em class="property"> = 1</em><a class="headerlink" href="#pydivert.Protocol.ICMP" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">ICMP</code><em class="property"> = 1</em><a class="headerlink" href="#pydivert.Protocol.ICMP" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="pydivert.Protocol.TCP">
-<code class="descname">TCP</code><em class="property"> = 6</em><a class="headerlink" href="#pydivert.Protocol.TCP" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">TCP</code><em class="property"> = 6</em><a class="headerlink" href="#pydivert.Protocol.TCP" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="pydivert.Protocol.UDP">
-<code class="descname">UDP</code><em class="property"> = 17</em><a class="headerlink" href="#pydivert.Protocol.UDP" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">UDP</code><em class="property"> = 17</em><a class="headerlink" href="#pydivert.Protocol.UDP" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="pydivert.Protocol.ROUTING">
-<code class="descname">ROUTING</code><em class="property"> = 43</em><a class="headerlink" href="#pydivert.Protocol.ROUTING" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">ROUTING</code><em class="property"> = 43</em><a class="headerlink" href="#pydivert.Protocol.ROUTING" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="pydivert.Protocol.FRAGMENT">
-<code class="descname">FRAGMENT</code><em class="property"> = 44</em><a class="headerlink" href="#pydivert.Protocol.FRAGMENT" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">FRAGMENT</code><em class="property"> = 44</em><a class="headerlink" href="#pydivert.Protocol.FRAGMENT" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="pydivert.Protocol.AH">
-<code class="descname">AH</code><em class="property"> = 51</em><a class="headerlink" href="#pydivert.Protocol.AH" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">AH</code><em class="property"> = 51</em><a class="headerlink" href="#pydivert.Protocol.AH" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="pydivert.Protocol.ICMPV6">
-<code class="descname">ICMPV6</code><em class="property"> = 58</em><a class="headerlink" href="#pydivert.Protocol.ICMPV6" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">ICMPV6</code><em class="property"> = 58</em><a class="headerlink" href="#pydivert.Protocol.ICMPV6" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="pydivert.Protocol.NONE">
-<code class="descname">NONE</code><em class="property"> = 59</em><a class="headerlink" href="#pydivert.Protocol.NONE" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">NONE</code><em class="property"> = 59</em><a class="headerlink" href="#pydivert.Protocol.NONE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="pydivert.Protocol.DSTOPTS">
-<code class="descname">DSTOPTS</code><em class="property"> = 60</em><a class="headerlink" href="#pydivert.Protocol.DSTOPTS" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">DSTOPTS</code><em class="property"> = 60</em><a class="headerlink" href="#pydivert.Protocol.DSTOPTS" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1067,6 +1096,7 @@ See <a class="reference external" href="http://www.iana.org/assignments/protocol
 
 
           </div>
+          
       </div>
       <div class="clearer"></div>
     </div>

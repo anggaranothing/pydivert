@@ -35,6 +35,7 @@ PyDivert                           WinDivert
 1.0.x (API-compatible with 0.0.7)  1.1.8 (bundled)
 2.0.x                              1.1.8 (bundled)
 2.1.x                              1.3 (bundled)
+2.2.x-anggaranothing               1.4.3 (bundled)
 =================================  ===============
 
 Getting Started
@@ -64,7 +65,7 @@ and then exits:
     w.close()  # stop capturing packets
 
 Packets that are not matched by the ``"tcp.DstPort == 80 and tcp.PayloadLength > 0"`` filter will not be handled by WinDivert
-and continue as usual. The syntax for the filter language is described in the `WinDivert documentation <https://reqrypt.org/windivert-doc.html#filter_language>`_.
+and continue as usual. The syntax for the filter language is described in the `WinDivert documentation <https://reqrypt.org/windivert-doc-1.4.html#filter_language>`_.
 
 Python Idioms
 -------------
