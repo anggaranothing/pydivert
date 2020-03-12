@@ -197,7 +197,7 @@ class Packet(object):
         - None, otherwise.
         """
         if self.address_family == socket.AF_INET:
-            return IPv4Header(self)
+            return IPv4Header(self, pseudo_cksum=self.has_pseudo_ip_checksum())
 
     @cached_property
     def ipv6(self):
@@ -252,17 +252,17 @@ class Packet(object):
         """
         ipproto, proto_start = self.protocol
         if ipproto == Protocol.TCP:
-            return TCPHeader(self, proto_start)
+            return TCPHeader(self, proto_start, pseudo_cksum=self.has_pseudo_tcp_checksum())
 
     @cached_property
     def udp(self):
         """
-        - An TCPHeader instance, if the packet is valid UDP.
+        - An UDPHeader instance, if the packet is valid UDP.
         - None, otherwise.
         """
         ipproto, proto_start = self.protocol
         if ipproto == Protocol.UDP:
-            return UDPHeader(self, proto_start)
+            return UDPHeader(self, proto_start, pseudo_cksum=self.has_pseudo_udp_checksum())
 
     @cached_property
     def _port(self):

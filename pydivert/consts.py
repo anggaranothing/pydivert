@@ -21,8 +21,8 @@ class Layer(IntEnum):
     """
     See https://reqrypt.org/windivert-doc-1.4.html#divert_open
     """
-    NETWORK = 0
-    NETWORK_FORWARD = 1
+    NETWORK = 0  # Network layer.
+    NETWORK_FORWARD = 1  # Network layer (forwarded packets).
 
 
 # Divert Flag.
@@ -42,9 +42,9 @@ class Param(IntEnum):
     """
     See https://reqrypt.org/windivert-doc-1.4.html#divert_set_param
     """
-    QUEUE_LEN = 0  # Packet queue length 16 < default 2048 < 16384
-    QUEUE_TIME = 1  # Packet queue time 20 < default 1000 < 8000
-    QUEUE_SIZE = 2  # Packet queue size (bytes)  65535 (64KB) < default 4194304 (4MB) < 33554432 (32MB)
+    QUEUE_LEN = 0  # Packet queue length. 16 < default 2048 < 16384
+    QUEUE_TIME = 1  # Packet queue time. 20 < default 1000 < 8000
+    QUEUE_SIZE = 2  # Packet queue size. (bytes)  65535 (64KB) < default 4194304 (4MB) < 33554432 (32MB)
 
 
 # Direction outbound/inbound

@@ -77,9 +77,9 @@ class TestParams(object):
     def test_queue_time_range(self, w):
         """
         Tests setting the minimum value for queue time.
-        From docs: 128 < default 512 < 2048
+        From docs: 20 < default 1000 < 8000
         """
-        def_range = (128, 512, 2048)
+        def_range = (20, 1000, 8000)
         for value in def_range:
             w.set_param(Param.QUEUE_TIME, value)
             assert value == w.get_param(Param.QUEUE_TIME)
@@ -87,9 +87,9 @@ class TestParams(object):
     def test_queue_len_range(self, w):
         """
         Tests setting the minimum value for queue length.
-        From docs: 1< default 512 <8192
+        From docs: 16 < default 2048 < 16384
         """
-        for value in (1, 512, 8192):
+        for value in (16, 2048, 16384):
             w.set_param(Param.QUEUE_LEN, value)
             assert value == w.get_param(Param.QUEUE_LEN)
 
